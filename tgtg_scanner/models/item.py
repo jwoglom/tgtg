@@ -21,6 +21,7 @@ ATTRS = [
     "pickupdate",
     "favorite",
     "rating",
+    "full_rating",
     "buffet",
     "item_category",
     "item_name",
@@ -62,8 +63,8 @@ class Item:
 
         item = data.get("item", {})
         self.item_id = item.get("item_id")
-        self.rating = item.get("average_overall_rating", {}).get("average_overall_rating", None)
-        self.rating = "-" if not self.rating else f"{self.rating:.1f}"
+        self.full_rating = item.get("average_overall_rating", {}).get("average_overall_rating", None)
+        self.rating = "-" if not self.full_rating else f"{self.full_rating:.1f}"
         self.packaging_option = item.get("packaging_option", "-")
         self.item_name = item.get("name", "-")
         self.buffet = "Yes" if item.get("buffet", False) else "No"
